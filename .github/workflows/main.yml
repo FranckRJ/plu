@@ -34,3 +34,19 @@ jobs:
         cd build
         cmake --build .
       shell: bash
+
+  build-windows:
+    runs-on: [windows-latest]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Generate build files
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+      shell: bash
+    - name: Build project
+      run: |
+        cd build
+        cmake --build .
+      shell: bash
