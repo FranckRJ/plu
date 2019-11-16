@@ -17,7 +17,7 @@ namespace plu
         {
             if (m_idx < 0)
             {
-                throw std::runtime_error{ "Cannot dereference a IndexedIterator with a negative index" };
+                throw std::runtime_error{ "Cannot dereference an IndexedIterator with a negative index" };
             }
 
             return std::pair<ValueRef, const int>{ *m_ite, m_idx };
