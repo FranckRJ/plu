@@ -6,21 +6,21 @@
 namespace plu
 {
     template<class T>
-    class IndexedIterator : public std::iterator<std::output_iterator_tag, std::pair<decltype(*std::declval<T>()), int>>
+    class IndexedIterator : public std::iterator<std::output_iterator_tag, std::pair<decltype(*std::declval<T>()), const int>>
     {
     public:
         using ValueRef = decltype(*std::declval<T>());
 
         IndexedIterator(T ite, int idx) : m_ite{ std::move(ite) }, m_idx{ idx } {}
 
-        std::pair<ValueRef, int> operator*() const
+        std::pair<ValueRef, const int> operator*() const
         {
             if (m_idx < 0)
             {
                 throw std::runtime_error{ "Cannot dereference a IndexedIterator with a negative index" };
             }
 
-            return std::pair<ValueRef, int>{ *m_ite, m_idx };
+            return std::pair<ValueRef, const int>{ *m_ite, m_idx };
         }
 
         IndexedIterator& operator++()
