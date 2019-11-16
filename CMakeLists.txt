@@ -13,4 +13,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 add_library(${LIB_PLU_NAME} INTERFACE)
 target_include_directories(${LIB_PLU_NAME} INTERFACE "include")
 
+# A "hack" to have a project in the IDE that contain all the files of the library
+add_custom_target(${LIB_PLU_NAME}_proj SOURCES "include/indexedcontainer.hpp")
+
 add_subdirectory("examples")
