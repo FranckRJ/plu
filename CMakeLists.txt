@@ -15,7 +15,10 @@ add_library(${LIB_PLU_NAME} INTERFACE)
 target_include_directories(${LIB_PLU_NAME} INTERFACE "include")
 
 # A "hack" to have a project in the IDE that contain all the files of the library
-add_custom_target(${LIB_PLU_IDE_NAME} SOURCES "include/indexedcontainer.hpp")
+add_custom_target(${LIB_PLU_IDE_NAME} SOURCES
+    "include/indexedcontainer.hpp"
+    "include/indexediterator.hpp"
+)
 
 set_target_properties(${LIB_PLU_IDE_NAME} PROPERTIES FOLDER "Plu")
 
