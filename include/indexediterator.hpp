@@ -1,26 +1,29 @@
 #pragma once
 
-#include <utility>
 #include <stdexcept>
+#include <utility>
 
 namespace plu
 {
-    template<class T>
-    class IndexedIterator : public std::iterator<std::output_iterator_tag, std::pair<decltype(*std::declval<T>()), const int>>
+    template <class T>
+    class IndexedIterator
+        : public std::iterator<std::output_iterator_tag, std::pair<decltype(*std::declval<T>()), const int>>
     {
     public:
         using ValueRef = decltype(*std::declval<T>());
 
-        IndexedIterator(T ite, int idx) : m_ite{ std::move(ite) }, m_idx{ idx } {}
+        IndexedIterator(T ite, int idx) : m_ite{std::move(ite)}, m_idx{idx}
+        {
+        }
 
         std::pair<ValueRef, const int> operator*() const
         {
             if (m_idx < 0)
             {
-                throw std::runtime_error{ "Cannot dereference an IndexedIterator with a negative index" };
+                throw std::runtime_error{"Cannot dereference an IndexedIterator with a negative index"};
             }
 
-            return std::pair<ValueRef, const int>{ *m_ite, m_idx };
+            return std::pair<ValueRef, const int>{*m_ite, m_idx};
         }
 
         IndexedIterator& operator++()
@@ -32,7 +35,7 @@ namespace plu
 
         IndexedIterator operator++(int)
         {
-            IndexedIterator cpy{ m_ite, m_idx };
+            IndexedIterator cpy{m_ite, m_idx};
             ++(*this);
             return cpy;
         }
@@ -52,4 +55,4 @@ namespace plu
             return !(lhs == rhs);
         }
     };
-}
+} // namespace plu
