@@ -18,6 +18,8 @@ target_include_directories(${LIB_PLU_NAME} INTERFACE "include")
 add_custom_target(${LIB_PLU_IDE_NAME} SOURCES
     "include/indexedcontainer.hpp"
     "include/indexediterator.hpp"
+    "include/private/indexedcontainer.hxx"
+    "include/private/indexediterator.hxx"
 )
 
 set_target_properties(${LIB_PLU_IDE_NAME} PROPERTIES FOLDER "Plu")

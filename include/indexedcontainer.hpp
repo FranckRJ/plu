@@ -12,19 +12,11 @@ namespace plu
     public:
         using Iterator = IndexedIterator<T>;
 
-        IndexedContainer(T beginIte, T endIte) : m_beginIte{std::move(beginIte)}, m_endIte{std::move(endIte)}
-        {
-        }
+        IndexedContainer(T beginIte, T endIte);
 
-        Iterator begin() const
-        {
-            return Iterator{m_beginIte, 0};
-        }
+        Iterator begin() const;
 
-        Iterator end() const
-        {
-            return Iterator{m_endIte, -1};
-        }
+        Iterator end() const;
 
     private:
         T m_beginIte;
@@ -32,17 +24,10 @@ namespace plu
     };
 
     template <class T>
-    IndexedContainer<T> makeIndexedContainer(T&& beginIte, T&& endIte)
-    {
-        return IndexedContainer<T>{std::forward<T>(beginIte), std::forward<T>(endIte)};
-    }
+    IndexedContainer<T> makeIndexedContainer(T&& beginIte, T&& endIte);
 
     template <class T>
-    IndexedContainer<typename T::iterator> makeIndexedContainer(T& container)
-    {
-        using std::begin;
-        using std::end;
-
-        return IndexedContainer<typename T::iterator>{begin(container), end(container)};
-    }
+    IndexedContainer<typename T::const_iterator> makeIndexedContainer(const T& container);
 } // namespace plu
+
+#include "private/indexedcontainer.hxx"
